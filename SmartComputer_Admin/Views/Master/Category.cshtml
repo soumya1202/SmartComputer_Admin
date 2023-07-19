@@ -1,0 +1,177 @@
+﻿@{
+    ViewData["Title"] = "Category Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+        .imgEnlarge{
+        transition:transform 0.25s ease;
+    }
+
+    .imgEnlarge:hover {
+        -webkit-transform:scale(6.5); /* or some other value */
+        transform:scale(6.5);
+    }
+</style>
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row align-items-end pt-3 pb-2">
+            <div class="col-md-6 order-2 order-md-1">
+                <div class="dashboardInfo">
+                    <p>Category Management</p>
+                </div>
+            </div>
+            <div class="col-md-6 order-1 order-md-2">
+                <div class="btn-group float-right">
+                    <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddCategory" onclick="AddCategoryClick()"> <img src="~/images/add.png" alt="">	Add Category</button>
+
+                    <div id="addCategory" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
+                        <span class="closeCategory close"><img src="~/images/cancel.png" alt=""></span>
+                        <form class="px-4 py-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Add Category Details</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="hidden" id="txtHiddenCategoryId" />
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addCategoryId">Category Name</label>
+                                        <input type="text" class="form-control" id="txt_category" placeholder="Add Category Name" onblur="CheckOnlyIsRequired(this,'Category Name')">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addCategoryId">Section</label>
+                                        <select class="form-control" id="catSection" name="catSection">
+                                            <option>Section 1</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="addCategoryId">Image</label>
+                                        <input type="file" accept="image/*" required class="form-control cat_Img" id="cat_Img" onblur="CheckOnlyIsRequired(this,'Category Image')">
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="divUploadedImg" style="display:none">
+                                    <div class="form-group">
+                                        <label for="cat_PrevImage">Uploaded Image</label>
+                                        <img src="" class="imgEnlarge" style="width: 100px; height: 100px;" id="cat_PrevImage" />
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="txtHiddenCatId" />
+                                <input type="hidden" id="txthiddenPrvImage" />
+                            </div>
+                            <div class="dropdown-divider mb-4"></div>
+                            <div class="btn-groups">
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddCategory()">Save</button>
+                                <button type="button" class="btn btn-secondary closecategory">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive tableTheme">
+
+            @* <img src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Category Image" />*@
+            <table id="tblCategory" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
+                <thead>
+                    <tr>
+                        <th class="dsplynone">Id</th>
+                        <th>Name</th>
+                        <th class="dsplynone"></th>
+                        <th>Image</th>
+                        <th></th>
+                    </tr>
+                    <tr class="filters" style="text-transform:uppercase;">
+                        <td class="dsplynone"></td>
+                        <td class=""></td>
+                        <td class="dsplynone"></td>
+                        <td class=""></td>
+                        <td class=""></td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade alertModal" id="CategoryAddDone" tabindex="-1" role="dialog" aria-labelledby="CategoryAddTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="~/images/done.png" alt="">
+                    <h3>Thank you!</h3>
+                    @*<p>Category added successfully</p>*@
+                    <p id="txtCategoryCrudResultMsg"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade alertModal dangerModal" id="CategoryError" tabindex="-1" role="dialog" aria-labelledby="CategoryDangerTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="~/images/error.png" alt="">
+                    <h3>Error!</h3>
+                    <p id="txtCategoryDangerMsg"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade alertModal" id="CategoryActiveDeactiveModel" tabindex="-1" role="dialog" aria-labelledby="categoryAddTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="addCategoryId">Reason</label>
+                        <textarea class="form-control" id="txt_Reason" placeholder="Reason" onchange="buttonYesActive()" onblur="CheckOnlyIsRequired(this,'Reason')"></textarea>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <img src="~/images/confirm.png" alt="">
+                    <p><span id="spnActiveDeactive"></span><strong><span id="spnCatDeleteConfirmationText"></span></strong></p>
+                    <div class="btn-groups">
+                        <input type="hidden" id="txtHiddenCatId" />
+                        <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="CatActiveProcess(this)">Yes</button>
+                        <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="CatDActiveProcess(this)">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>*@
+
+@section Scripts {
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/Master/Category.js"></script>
+}

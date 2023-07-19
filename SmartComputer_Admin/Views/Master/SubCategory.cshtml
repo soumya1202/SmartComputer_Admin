@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "SubCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row align-items-end pt-3 pb-2">
+        <div class="col-md-6 order-2 order-md-1">
+            <div class="dashboardInfo">
+                <p>SubCategory Management</p>
+            </div>
+        </div>
+        <div class="col-md-6 order-1 order-md-2">
+            <div class="btn-group float-right">
+                <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddCategory" onclick="AddSectionClick()"> <img src="~/images/add.png" alt="">	Add SubCategory</button>
+
+                <div id="addCategory" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
+                    <span class="closeCategory close"><img src="~/images/cancel.png" alt=""></span>
+                    <form class="px-4 py-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Add Subcategory Details</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input type="hidden" id="txtHiddenCategoryId" />
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="addCategoryId">Subcategory Name</label>
+                                    <input type="text" class="form-control" id="txt_category" placeholder="Add Subcategory Name" onblur="CheckOnlyIsRequired(this,'Category Name')">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="addCategoryId">Category Name</label>
+                                    <Select type="text" class="form-control" id="txt_category" placeholder="Add Subcategory Name" >
+                                        <option value="0">--Select Category--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="addCategoryId">Image</label>
+                                    <input type="file" class="form-control" id="cat_Img" onblur="CheckOnlyIsRequired(this,'Category Image')">
+                                </div>
+                            </div>
+                            <input type="hidden" id="txtHiddenCatId" />
+                        </div>
+                        <div class="dropdown-divider mb-4"></div>
+                        <div class="btn-groups">
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddCategory()">Save</button>
+                            <button type="button" class="btn btn-secondary closecategory">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive tableTheme">
+
+        <table id="tblCategory" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
+            <thead>
+                <tr>
+                    <th class="dsplynone">Id</th>
+                    <th>Name</th>
+
+                    <th></th>
+                </tr>
+                <tr class="filters" style="text-transform:uppercase;">
+                    <td class="dsplynone"></td>
+                    <td class=""></td>
+
+                    <td class=""></td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<div class="modal fade alertModal" id="CategoryAddDone" tabindex="-1" role="dialog" aria-labelledby="CategoryAddTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="~/images/done.png" alt="">
+                <h3>Thank you!</h3>
+                @*<p>Category added successfully</p>*@
+                <p id="txtCategoryCrudResultMsg"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade alertModal" id="CategoryDeleteModel" tabindex="-1" role="dialog" aria-labelledby="categoryAddTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="~/images/confirm.png" alt="">
+                <p>Are you sure you want to delete<strong><span id="spnCatDeleteConfirmationText"></span></strong></p>
+                <div class="btn-groups">
+                    <input type="hidden" id="txtHiddenCatId" />
+                    <button type="button" class="btn btn-primary" onclick="DeleteCategoryProcess(this)">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+
+    <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/Master/SubCategory.js"></script>
+}

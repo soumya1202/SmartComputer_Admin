@@ -1,0 +1,12 @@
+E:\Project\SmartComputer_Admin\EntityLayer\bin\Debug\net6.0\EntityLayer.deps.json
+E:\Project\SmartComputer_Admin\EntityLayer\bin\Debug\net6.0\EntityLayer.dll
+E:\Project\SmartComputer_Admin\EntityLayer\bin\Debug\net6.0\EntityLayer.pdb
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.csproj.AssemblyReference.cache
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.AssemblyInfoInputs.cache
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.AssemblyInfo.cs
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.csproj.CoreCompileInputs.cache
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.dll
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\refint\EntityLayer.dll
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\EntityLayer.pdb
+E:\Project\SmartComputer_Admin\EntityLayer\obj\Debug\net6.0\ref\EntityLayer.dll
