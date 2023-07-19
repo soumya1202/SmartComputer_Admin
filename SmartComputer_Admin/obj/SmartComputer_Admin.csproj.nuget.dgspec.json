@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj": {}
+    "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj": {
+    "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
+        "projectPath": "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\obj\\",
+        "outputPath": "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,11 +33,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\DAL.csproj"
+              "E:\\Project\\SmartComputer_Admin\\DAL\\DAL.csproj": {
+                "projectPath": "E:\\Project\\SmartComputer_Admin\\DAL\\DAL.csproj"
               },
-              "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
+              "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
+                "projectPath": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
               }
             }
           }
@@ -71,14 +71,14 @@
         }
       }
     },
-    "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\DAL.csproj": {
+    "E:\\Project\\SmartComputer_Admin\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\DAL.csproj",
+        "projectUniqueName": "E:\\Project\\SmartComputer_Admin\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\DAL.csproj",
+        "projectPath": "E:\\Project\\SmartComputer_Admin\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\DAL\\obj\\",
+        "outputPath": "E:\\Project\\SmartComputer_Admin\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -100,8 +100,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
+              "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
+                "projectPath": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
               }
             }
           }
@@ -145,14 +145,14 @@
         }
       }
     },
-    "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
+    "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj",
+        "projectUniqueName": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj",
         "projectName": "EntityLayer",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj",
+        "projectPath": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\obj\\",
+        "outputPath": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -205,14 +205,14 @@
         }
       }
     },
-    "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj": {
+    "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
+        "projectUniqueName": "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
         "projectName": "SmartComputer_Admin",
-        "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
+        "projectPath": "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\obj\\",
+        "outputPath": "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -234,11 +234,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj"
+              "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj": {
+                "projectPath": "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj"
               },
-              "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
+              "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj": {
+                "projectPath": "E:\\Project\\SmartComputer_Admin\\EntityLayer\\EntityLayer.csproj"
               }
             }
           }

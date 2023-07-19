@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "edP5CNUj/K6JMplt4tm7kwGmRus1isp8aMlwdhf1v1/HwmAkF/PM9tiJEl1lORKOMg0FfYUmtVznxK8dbKN4xw==",
+  "dgSpecHash": "R6wxll9ciVkVU1Gldr6+U5VcK0C3iXS/0Jeuf4pvgtRCINIo+/pvIWDUwLtFPEruVztukFACk8Kk2nYN5IlyXQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
+  "projectFilePath": "E:\\Project\\SmartComputer_Admin\\SmartComputer_Admin\\SmartComputer_Admin.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

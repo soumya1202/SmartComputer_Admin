@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xgIdySNg2IUwoZmJ+Rf+fWANzzJPZfdNFeY6MKhbWtoInVm0O1zd7WpFDOtxBwoMlC14+DStdjSig2ZhB4HMlQ==",
+  "dgSpecHash": "hOmi+dU/c685IuGoBtVrcI6M3jz1Tc4DuubF/3hAXr1AbommQiOc5uYhMi5GGk8EwVQyGwGqwFvBCkzQnRbAfg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\USER\\source\\repos\\soumya1202\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
+  "projectFilePath": "E:\\Project\\SmartComputer_Admin\\BusinessLayer\\BusinessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
