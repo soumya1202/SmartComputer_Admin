@@ -35,7 +35,7 @@ namespace DAL.Repository
             result.ReturnMessage= result1.ReturnMessage;
             return result;
         }
-        public APIResponseModel CategoriesActiveDeactive(CategoryInputModel inputModel)
+        public APIResponseModel CategoriesActiveDeactive(CategoryActiveDeactiveInputModel inputModel)
         {
             APIResponseModel result = new APIResponseModel();
             CategoryInputDBModel DBinputmodel = new CategoryInputDBModel(inputModel);

@@ -39,11 +39,11 @@ namespace BusinessLogicLayer.Master
         {
             try
             {
-                APIResponseModel result = new APIResponseModel();
+                //APIResponseModel result = new APIResponseModel();
 
                 APIResponseModel result = new APIResponseModel();
                 CategoryRepo _CategoryRepo = new CategoryRepo();
-                result = _CategoryRepo.CategoriesInsertUpdate(inputModel);
+               result = _CategoryRepo.CategoriesActiveDeactive(inputModel);
                 return result;
                 
             }

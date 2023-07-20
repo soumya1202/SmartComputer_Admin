@@ -28,6 +28,13 @@ namespace EntityLayer.Category
             IN_IMAGEPATH= inputModel.ImagePath;
             IN_USEREMAIL = inputModel.CreatedBy;
         }
+        public CategoryInputDBModel(CategoryActiveDeactiveInputModel inputModel)
+        {
+            IN_ID = inputModel.CategoryId;
+           IN_DeletedBy= inputModel.DeletedBy;
+            IN_DeletionReason= inputModel.DeletionReason;
+            IN_ISACTIVE = inputModel.IsActive;
+        }
         public string IN_ACTION { get; set; }
         public int? IN_ID { get; set; }
         public string IN_CATEGORYNAME { get; set; }
