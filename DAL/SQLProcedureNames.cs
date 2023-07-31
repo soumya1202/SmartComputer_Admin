@@ -17,6 +17,10 @@
         public const string PROC_SECTION_CUD = "PROC_SECTION_CUD";
         public const string PROC_FETCH_SECTION = "PROC_FETCH_SECTION";
         #endregion
+        #region Brand
+        public const string PROC_FETCH_BRAND = "PROC_FETCH_BRAND";
+        public const string PROC_INSERTUPDATE_BRAND = "PROC_BRAND_CUD";
+        #endregion
         public const string PROC_SECTIONMANAGEMENT_CUD = "PROC_SECTIONMANAGEMENT_CUD";
         public const string PROC_SECTIONMANAGEMENT_GET = "PROC_SECTIONMANAGEMENT_GET";
         public const string PROC_FETCH_ADMINUSER = "PROC_FETCH_ADMINUSER";

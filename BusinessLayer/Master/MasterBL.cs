@@ -1,6 +1,7 @@
 ﻿using DAL.Repository;
 using EntityLayer;
 using EntityLayer.Category;
+using EntityLayer.Brand;
 using Newtonsoft.Json;
 
 namespace BusinessLogicLayer.Master
@@ -94,7 +95,59 @@ namespace BusinessLogicLayer.Master
             }
         }
         #endregion
-       
+
+
+        #region Brand
+        public APIResponseModel BrandCrud(BrandInputModel inputModel)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                BrandRepo _BrandRepo = new BrandRepo();
+                result = _BrandRepo.BrandsInsertUpdate(inputModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel GetBrandDataTable(BrandDatatableInputModel model)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                BrandRepo _BrandRepo = new BrandRepo();
+                result.Data = JsonConvert.SerializeObject(_BrandRepo.FetchBrand());
+                result.ReturnCode = "200";
+                result.ReturnMessage = "Success";
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel BrandActiveDeactive(BrandActiveDeactiveInputModel inputModel)
+        {
+            try
+            {
+                //APIResponseModel result = new APIResponseModel();
+
+                APIResponseModel result = new APIResponseModel();
+                BrandRepo _BrandRepo = new BrandRepo();
+                result = _BrandRepo.BrandsActiveDeactive(inputModel);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
         public string GetSessionValue(string sessionkey)
         {
             var sessionValue = string.Empty;

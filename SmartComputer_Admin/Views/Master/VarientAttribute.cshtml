@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Brand";
+    ViewData["Title"] = "VarientAttribute";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,77 +20,60 @@
         <div class="row align-items-end pt-3 pb-2">
             <div class="col-md-6 order-2 order-md-1">
                 <div class="dashboardInfo">
-                    <p>Brand Management</p>
+                    <p>Varient Attribute Management</p>
                 </div>
             </div>
             <div class="col-md-6 order-1 order-md-2">
                 <div class="btn-group float-right">
-                    <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddBrand" onclick="AddBrandClick()"> <img src="~/images/add.png" alt="">	Add Brand</button>
+                    <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddVarAtr" onclick="AddVarAtrClick()"> <img src="~/images/add.png" alt="">	Add Varient Attribute</button>
 
-                    <div id="addBrand" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
+                    <div id="addVarAtr" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
                         <span class="closeCategory close"><img src="~/images/cancel.png" alt=""></span>
                         <form class="px-4 py-3">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Add Brand Details</h4>
+                                    <h4>Add Varient Attribute</h4>
                                 </div>
                             </div>
                             <div class="row">
-                                <input type="hidden" id="txtHiddenBrandId" />
+                                <input type="hidden" id="txtHiddenVarAtrId" />
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="addBrandId">Brand Name</label>
-                                        <input type="text" class="form-control" id="txt_Brands" placeholder="Add Brand Name" onblur="CheckOnlyIsRequired(this,'Brand Name')">
+                                        <label for="addVarAtrId">Varient Attribute Name</label>
+                                        <input type="text" class="form-control" id="txt_Varatr" placeholder="Add Varient Attribute Name" onblur="CheckOnlyIsRequired(this,'Varient Attribute Name')">
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                @*<div class="col-md-12">
                                     <div class="form-group">
                                         <label for="addBrandId">SubCategory</label>
-                                        <div class="form-control">
-                                            <div class="row">
-                                            <div class="col-sm-6">
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1"> subcat1</label><br>
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1"> sub cat2</label><br>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1"> subcat3</label><br>
-                                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                <label for="vehicle1"> sub cat4</label><br>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        
-                                      @*  <select class="form-control" id="BrandSubcat" name="brandSubcat">*@
-                                           @* subcategory dropdown*@
-                                           @* <option>Subcategory 1</option>
+                                        <select class="form-control" id="BrandSubcat" name="brandSubcat">*@
+                                            @* subcategory dropdown*@
+                                            @*<option>Subcategory 1</option>
                                             <option>Subcategory 2</option>
                                             <option>Subcategory 3</option>
-                                        </select>*@
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
+                                </div>*@
+                                @*<div class="col-md-12">
                                     <div class="form-group">
                                         <label for="addBrandId">Image</label>
                                         <input type="file" accept="image/*" required class="form-control cat_Img" id="brand_Img" onblur="CheckOnlyIsRequired(this,'Brand Image')">
                                     </div>
-                                </div>
-                                <div class="col-md-12" id="divUploadedImg" style="display:none">
+                                </div>*@
+                                @*<div class="col-md-12" id="divUploadedImg" style="display:none">
                                     <div class="form-group">
                                         <label for="brand_PrevImage">Uploaded Image</label>
                                         <img src="" class="imgEnlarge" style="width: 100px; height: 100px;" id="brand_PrevImage" />
                                     </div>
-                                </div>
+                                </div>*@
 
-                                <input type="hidden" id="txtHiddenBrandId" />
+                                <input type="hidden" id="txtHiddenVarAtrId" />
                                 <input type="hidden" id="txthiddenPrvImage" />
                             </div>
                             <div class="dropdown-divider mb-4"></div>
                             <div class="btn-groups">
 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddBrand()">Save</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddVarAtr()">Save</button>
                                 <button type="button" class="btn btn-secondary closecategory">Cancel</button>
                             </div>
                         </form>
@@ -126,7 +109,7 @@
 
     </div>
 
-    <div class="modal fade alertModal" id="BrandAddDone" tabindex="-1" role="dialog" aria-labelledby="BrandAddTitle" aria-hidden="true">
+    <div class="modal fade alertModal" id="VarAtrAddDone" tabindex="-1" role="dialog" aria-labelledby="CategoryAddTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -138,12 +121,12 @@
                     <img src="~/images/done.png" alt="">
                     <h3>Thank you!</h3>
                     @*<p>Category added successfully</p>*@
-                    <p id="txtCategoryCrudResultMsg"></p>
+                    <p id="txtVarAtrCrudResultMsg"></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade alertModal dangerModal" id="BrandError" tabindex="-1" role="dialog" aria-labelledby="BrandDangerTitle" aria-hidden="true">
+    <div class="modal fade alertModal dangerModal" id="VarAtrError" tabindex="-1" role="dialog" aria-labelledby="VarAtrDangerTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -154,13 +137,13 @@
                 <div class="modal-body">
                     <img src="~/images/error.png" alt="">
                     <h3>Error!</h3>
-                    <p id="txtBrandDangerMsg"></p>
+                    <p id="txtVarAtrDangerMsg"></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade alertModal" id="BrandActiveDeactiveModel" tabindex="-1" role="dialog" aria-labelledby="BrandAddTitle" aria-hidden="true">
+    <div class="modal fade alertModal" id="VarAtrActiveDeactiveModel" tabindex="-1" role="dialog" aria-labelledby="VarAtrAddTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -171,17 +154,17 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="addBrandId">Reason</label>
+                        <label for="addVarAtrId">Reason</label>
                         <textarea class="form-control" id="txt_Reason" placeholder="Reason" onchange="buttonYesActive()" onblur="CheckOnlyIsRequired(this,'Reason')"></textarea>
                     </div>
                 </div>
                 <div class="modal-body">
                     <img src="~/images/confirm.png" alt="">
-                    <p><span id="spnActiveDeactive"></span><strong><span id="spnBrandDeleteConfirmationText"></span></strong></p>
+                    <p><span id="spnActiveDeactive"></span><strong><span id="spnVarAtrDeleteConfirmationText"></span></strong></p>
                     <div class="btn-groups">
-                        <input type="hidden" id="txtHiddenCatId" />
-                        <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="BrandActiveProcess(this)">Yes</button>
-                        <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="BrandDActiveProcess(this)">Yes</button>
+                        <input type="hidden" id="txtHiddenVarAtrId" />
+                        <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="VarAtrActiveProcess(this)">Yes</button>
+                        <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="VarAtrDActiveProcess(this)">Yes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -192,5 +175,5 @@
 
 @section Scripts {
     <script src="~/scripts/common.js"></script>
-    <script src="~/scripts/Master/Brand.js"></script>
+    <script src="~/scripts/Master/VarientAttribute.js "></script>
 }
