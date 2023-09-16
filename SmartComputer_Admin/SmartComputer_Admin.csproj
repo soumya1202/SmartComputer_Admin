@@ -59,4 +59,8 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\VarientOption\" />
+  </ItemGroup>
+
 </Project>

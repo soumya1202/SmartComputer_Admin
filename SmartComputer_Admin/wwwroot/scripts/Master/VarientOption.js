@@ -1,42 +1,42 @@
 ﻿$(document).ready(function () {
     // $('.tblCategory').dataTable();
     $('.closecategory').click(function () {
-        $('#addCategory').removeClass('active');
+        $('#addVarOpt').removeClass('active');
     });
 
-    ServerSideCategoryDataTable();
+    ServerSideVarOptDataTable();
     //DatableSearchColumnWise("tblCategory");
 
 });
 
 function OpenCrudpopUp() {
-    $('#addCategory').removeClass('active');
+    $('#addVarOpt').removeClass('active');
     // show Modal
-    $('#CategoryAddDone').modal('show');
+    $('#VarOptAddDone').modal('show');
 }
 function OpenCrudpopUpDanger() {
-    $('#txtCategoryDangerMsg').val();
-    $('#addCategory').removeClass('active');
+    $('#txtVarOptDangerMsg').val();
+    $('#addVarOpt').removeClass('active');
     // show Modal
-    $('#CategoryError').modal('show');
+    $('#VarOptError').modal('show');
 }
 
-function AddCategory() {
+function AddVarOpt() {
     RemoveAllFieldErrorBorderColor();
     var isValid = 1;
     var formData = new FormData();
-    var catName = $("#txt_category").val().trim();
+    var VarOptName = $("#txt_VarOpt").val().trim();
     /*var catImage = $("#cat_Img").prop("files")[0];*/
-    var catImage = $("#cat_Img").prop("files")[0];
+    //var BrandImage = $("#brand_Img").prop("files")[0];
     //alert(catImage.getAsDataURL());
-    var catId = $('#txtHiddenCatId').val().trim();
-    var catPrevImage = $("#txthiddenPrvImage").val().trim();
-    if (catId.length > 0) {
-        formData.append("Id", catId);
+    var VarOptId = $('#txtHiddenVarOptId').val().trim();
+    //var BrandPrevImage = $("#txthiddenPrvImage").val().trim();
+    if (VarOptId.length > 0) {
+        formData.append("IN_Id", VarOptId);
     }
 
-    if (!HasValue(catName)) {
-        SetBorderColorOfErrorField($("#txt_category"));
+    if (!HasValue(VarOptName)) {
+        SetBorderColorOfErrorField($("#txt_VarOpt"));
         isValid = 0;
     }
     //if (!HasValue(catDesc)) {
@@ -44,19 +44,19 @@ function AddCategory() {
     //    isValid = 0;
     //}
     if (isValid == 1) {
-        formData.append("CategoryName", catName);
-        formData.append("Image", catImage);
-        formData.append("PrvImage", catPrevImage);
+        formData.append("IN_Name", VarOptName);
+        //formData.append("IN_Image", BrandImage);
+        //formData.append("IN_PrvImage", BrandPrevImage);
         //  formData.append("IN_IsActive", true);
-        CategoryCrud(formData);
+        VarOptCrud(formData);
         ResetField();
     }
 
 }
-function CategoryCrud(formData) {
+function VarOptCrud(formData) {
     $.ajax({
         type: "POST",
-        url: '/Category/CategoryCrud',
+        url: '/VarientOption/VarientOptCrud',
         data: formData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -64,17 +64,17 @@ function CategoryCrud(formData) {
         processData: false,
         success: function (result) {
 
-            $('#addCategory').removeClass('active');
+            $('#addVarOpt').removeClass('active');
             ResetField();
             // alert(JSON.parse(result));
             if (result.returnCode == '200') {
-                ServerSideCategoryDataTable();
+                ServerSideVarOptDataTable();
                 //  DatableSearchColumnWise("tblCategory");
-                $("#txtCategoryCrudResultMsg").text(result.returnMessage);
+                $("#txtVarOptCrudResultMsg").text(result.returnMessage);
                 OpenCrudpopUp();
             }
             else {
-                $("#txtCategoryDangerMsg").text(result.returnMessage);
+                $("#txtVarOptDangerMsg").text(result.returnMessage);
                 OpenCrudpopUpDanger();
             }
         },
@@ -84,11 +84,11 @@ function CategoryCrud(formData) {
     });
 };
 function ResetField() {
-    $("#txt_category").val("");
-    $("#cat_Img").val("");
-    $('#txtHiddenCatId').val("");
-    $('#txthiddenPrvImage').val("");
-    $('#divUploadedImg').hide();
+    $("#txt_VarOpt").val("");
+    //$("#brand_Img").val("");
+    $('#txtHiddenVarOptId').val("");
+    //$('#txthiddenPrvImage').val("");
+    //$('#divUploadedImg').hide();
     $("#btnActive").hide();
     $("#btnDeactive").hide();
     $("#txt_Reason").val("");
@@ -96,7 +96,7 @@ function ResetField() {
     $("#btnDeactive").attr('disabled', 'disabled');
 }
 
-function ServerSideCategoryDataTable() {
+function ServerSideVarOptDataTable() {
 
     //$('.tblCategory').dataTable({
     //    dom: 'rtip',
@@ -142,39 +142,39 @@ function ServerSideCategoryDataTable() {
         "destroy": true,
         scrollX: false,
         "ajax": {
-            "url": "/Category/CategoryDataTable",
+            "url": "/VarientOption/VarientOptDataTable",
             dataSrc: ''
         },
         "columns": [{
             "data": "id",
-            "sClass": "dsplynone hiddenCatId",
+            "sClass": "dsplynone hiddenVarOptId",
 
         },
         {
-            "data": "categoryName",
-            "sClass": "catName"
+            "data": "VarientOptionName",
+            "sClass": "varoptName"
         },
-        {
-            "data": "imagePath",
-            "sClass": "dsplynone prvImagePath"
-        },
-        {
-            'data': 'imagePath',
-            "sClass": " ",
-            'render': function (data) {
-                return '<img src="/Upload/Category/' + data +'" class="imgEnlarge" style="width: 30px; height: 30px;"  id="cat_PrevImage"/>';
+        //{
+        //    "data": "imagePath",
+        //    "sClass": "dsplynone prvImagePath"
+        //},
+        //{
+        //    'data': 'imagePath',
+        //    "sClass": " ",
+        //    'render': function (data) {
+        //        return '<img src="/Upload/Brand/' + data +'" class="imgEnlarge" style="width: 30px; height: 30px;"  id="brand_PrevImage"/>';
 
-            }
-        },
+        //    }
+        //},
         {
             'data': 'isActive',
             "sClass": " ",
             'render': function (data, type, row) {
                 if (data) {
-                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">DeActive</button></div ></div>';
+                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditVarOpt(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveVarOpt(' + data + ', ' + row["id"] + ' )">DeActive</button></div ></div>';
                 }
                 else {
-                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">Active</button></div ></div>';
+                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditVarOpt(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveVarOpt(' + data + ', ' + row["id"] + ' )">Active</button></div ></div>';
                 }
                 
 
@@ -185,23 +185,23 @@ function ServerSideCategoryDataTable() {
 
 }
 
-function EditCategory(element) {
-    $('#divUploadedImg').show();
+function EditBrand(element) {
+    //$('#divUploadedImg').show();
     RemoveAllFieldErrorBorderColor();
-    var catId = $(element).closest("tr").find('.hiddenCatId').text().trim();
-    var catname = $(element).closest("tr").find('.catName').text().trim();
+    var varoptId = $(element).closest("tr").find('.hiddenVarOptId').text().trim();
+    var varoptname = $(element).closest("tr").find('.varoptName').text().trim();
     /*var desc = $(element).closest("tr").find('.catDesc').text().trim();*/
-    var prvImg = $(element).closest("tr").find('.prvImagePath').text().trim();
-    $('#txtHiddenCatId').val(catId);
-    $("#txt_category").val(catname);
-    $('#txthiddenPrvImage').val(prvImg);
-    var imgPath = "/Upload/Category/" + prvImg;
-    $("#cat_PrevImage").attr("src", imgPath);
-    $("#txt_category").val(catname);
+    //var prvImg = $(element).closest("tr").find('.prvImagePath').text().trim();
+    $('#txtHiddenVarOptId').val(varoptId);
+    $("#txt_VarOpt").val(varoptname);
+    //$('#txthiddenPrvImage').val(prvImg);
+    //var imgPath = "/Upload/Brand/" + prvImg;
+    //$("#brand_PrevImage").attr("src", imgPath);
+    $("#txt_VarOpt").val(varoptname);
     /* $("#txt_desc").val(desc);*/
     OpenAddPopUp();
 }
-function ActiveDActiveCat(isActive, id) {
+function ActiveDActiveVarOpt(isActive, id) {
     $("#txt_Reason").val("");
     $("#btnActive").attr('disabled', 'disabled');
     $("#btnDeactive").attr('disabled', 'disabled');
@@ -215,17 +215,17 @@ function ActiveDActiveCat(isActive, id) {
         $("#btnDeactive").hide();
         $("#spnActiveDeactive").text("Are you sure you want to Active this category");
     }
-    $("#txtHiddenCatId").val(id);
+    $("#txtHiddenBrandId").val(id);
     $("#txtHiddenActiveInactive").val(isActive);
-    $('#CategoryActiveDeactiveModel').modal('show');
+    $('#BrandActiveDeactiveModel').modal('show');
 }
-function DeleteCategory(id) {
+function DeleteVarOpt(id) {
     if (id == null || id.length == 0) {
         alert("Inernal server error");
         return false;
     }
-    $("#txtHiddenCatId").val(id);
-    $('#CategoryActiveDeactiveModel').modal('show');
+    $("#txtHiddenVarOptId").val(id);
+    $('#VarOptActiveDeactiveModel').modal('show');
     //if (confirm('Are you sure to delete this!')) {
     //    var formData = new FormData()
     //    formData.append("IN_Id", id);
@@ -240,50 +240,50 @@ function OpenAddPopUp() {
     //$('html, body').animate({
     //    scrollTop: $('#addCategory').offset().top - 30
     //}, 500);
-    $('#addCategory').addClass('active');
+    $('#addVarOpt').addClass('active');
     $('html, body').animate({
-        scrollTop: $('#addCategory').offset().top - 30
+        scrollTop: $('#addVarOpt').offset().top - 30
     }, 500);
 }
-function AddCategoryClick() {
+function AddVarOptClick() {
     ResetField();
-    $('#addCategory').addClass('active');
+    $('#addVarOpt').addClass('active');
     $('html, body').animate({
-        scrollTop: $('#addCategory').offset().top - 30
+        scrollTop: $('#addVarOpt').offset().top - 30
     }, 500);
 }
-function CatActiveProcess(element) {
-    var id = $("#txtHiddenCatId").val();
+function VarOptActiveProcess(element) {
+    var id = $("#txtHiddenVarOptId").val();
     if (id == null || id.length == 0) {
         alert("Inernal server error");
         return false;
     }
-    $('#CategoryActiveDeactiveModel').modal('hide');
+    $('#VarOptActiveDeactiveModel').modal('hide');
     var formData = new FormData()
     formData.append("IN_Id", id);
     formData.append("IN_IsActive", true);
     formData.append("IN_Reason", $("#txt_Reason").val().trim());
-    CategoryActiveDeactive(formData);
-    ServerSideCategoryDataTable();
+    VarOptActiveDeactive(formData);
+    ServerSideVarOptDataTable();
 }
-function CatDActiveProcess(element) {
-    var id = $("#txtHiddenCatId").val();
+function VarOptDActiveProcess(element) {
+    var id = $("#txtHiddenVarOptId").val();
     if (id == null || id.length == 0) {
         alert("Inernal server error");
         return false;
     }
-    $('#CategoryActiveDeactiveModel').modal('hide');
+    $('#VarOptActiveDeactiveModel').modal('hide');
     var formData = new FormData()
-    formData.append("CategoryId", id);
-    formData.append("IsActive", false);
-    formData.append("DeletionReason",  $("#txt_Reason").val().trim());
-    CategoryActiveDeactive(formData);
-    ServerSideCategoryDataTable();
+    formData.append("IN_Id", id);
+    formData.append("IN_IsActive", false);
+    formData.append("IN_Reason",  $("#txt_Reason").val().trim());
+    VarOptActiveDeactive(formData);
+    ServerSideVarOptDataTable();
 }
-function CategoryActiveDeactive(formData) {
+function VarOptActiveDeactive(formData) {
     $.ajax({
         type: "POST",
-        url: '/Category/CategoryActiveDeactive',
+        url: '/VarientOption/VarientOptActiveDeactive',
         data: formData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -292,13 +292,13 @@ function CategoryActiveDeactive(formData) {
         success: function (result) {
             ResetField(); 
             if (result.returnCode == '200') {
-                ServerSideCategoryDataTable();
+                ServerSideVarOptDataTable();
                 //  DatableSearchColumnWise("tblCategory");
-                $("#txtCategoryCrudResultMsg").text(result.returnMessage);
+                $("#txtVarOptCrudResultMsg").text(result.returnMessage);
                 OpenCrudpopUp();
             }
             else {
-                $("#txtCategoryDangerMsg").text(result.returnMessage);
+                $("#txtVarOptDangerMsg").text(result.returnMessage);
                 OpenCrudpopUpDanger();
             }
         },

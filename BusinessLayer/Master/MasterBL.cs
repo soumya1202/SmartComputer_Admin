@@ -1,7 +1,9 @@
 ﻿using DAL.Repository;
 using EntityLayer;
-using EntityLayer.Category;
 using EntityLayer.Brand;
+using EntityLayer.Category;
+using EntityLayer.VarientAtr;
+using EntityLayer.VarientOpt;
 using Newtonsoft.Json;
 
 namespace BusinessLogicLayer.Master
@@ -138,6 +140,159 @@ namespace BusinessLogicLayer.Master
                 APIResponseModel result = new APIResponseModel();
                 BrandRepo _BrandRepo = new BrandRepo();
                 result = _BrandRepo.BrandsActiveDeactive(inputModel);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Varient Attribute
+        public APIResponseModel VarientAtrCrud(VarientAtrInputModel inputModel)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientAtrRepo _VarientAtrRepo = new VarientAtrRepo();
+                result = _VarientAtrRepo.VarientAtrInsertUpdate(inputModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel GetVarientAtrDataTable(VarientAtrDatatableInputModel model)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientAtrRepo _VarientAtrRepo = new VarientAtrRepo();
+                result.Data = JsonConvert.SerializeObject(_VarientAtrRepo.FetchVarientAtr());
+                result.ReturnCode = "200";
+                result.ReturnMessage = "Success";
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel VarientAtrActiveDeactive(VarientAtrActiveDeactiveInputModel inputModel)
+        {
+            try
+            {
+                //APIResponseModel result = new APIResponseModel();
+
+                APIResponseModel result = new APIResponseModel();
+                VarientAtrRepo _VarientAtrRepo = new VarientAtrRepo();
+                result = _VarientAtrRepo.VarientAtrActiveDeactive(inputModel);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Varient Option
+        public APIResponseModel VarientOptCrud(VarientOptInputModel inputModel)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result = _VarientOptRepo.VarientOptInsertUpdate(inputModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel GetVarientOptDataTable(VarientOptDatatableInputModel model)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result.Data = JsonConvert.SerializeObject(_VarientOptRepo.FetchVarientOpt());
+                result.ReturnCode = "200";
+                result.ReturnMessage = "Success";
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                 throw ex;
+            }
+        }
+        public APIResponseModel VarientOptActiveDeactive(VarientOptActiveDeactiveInputModel inputModel)
+        {
+            try
+            {
+                //APIResponseModel result = new APIResponseModel();
+
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result = _VarientOptRepo.VarientOptActiveDeactive(inputModel);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region Product
+        public APIResponseModel ProductCrud(VarientOptInputModel inputModel)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result = _VarientOptRepo.VarientOptInsertUpdate(inputModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel ProductDataTable(VarientOptDatatableInputModel model)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result.Data = JsonConvert.SerializeObject(_VarientOptRepo.FetchVarientOpt());
+                result.ReturnCode = "200";
+                result.ReturnMessage = "Success";
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel ProductActiveDeactive(VarientOptActiveDeactiveInputModel inputModel)
+        {
+            try
+            {
+                //APIResponseModel result = new APIResponseModel();
+
+                APIResponseModel result = new APIResponseModel();
+                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
+                result = _VarientOptRepo.VarientOptActiveDeactive(inputModel);
                 return result;
 
             }

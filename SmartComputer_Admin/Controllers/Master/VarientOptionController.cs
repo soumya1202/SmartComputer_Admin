@@ -1,59 +1,67 @@
 ﻿using BusinessLogicLayer.Master;
+using EntityLayer.VarientOpt;
 using EntityLayer;
-using EntityLayer.Category;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using EntityLayer.VarientAtr;
 
 namespace SmartComputer_Admin.Controllers.Master
 {
-    public class CategoryController : Controller
+    public class VarientOptionController : Controller
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private IWebHostEnvironment Environment; 
-        public CategoryController( IWebHostEnvironment environment)
+        private IWebHostEnvironment Environment;
+        public VarientOptionController(IWebHostEnvironment environment)
         {
             //_httpContextAccessor = httpContextAccessor;
             Environment = environment;
-             
+
 
         }
-        [Route("Index")]
         public IActionResult Index()
         {
-
-            return View("Views/Master/Category.cshtml");
+            return View("Views/Master/VarientOption.cshtml");
         }
-
-
         [HttpPost]
-        public async Task<IActionResult> CategoryCrud(CategoryInputModel _CategoryInputModel)
+        public async Task<IActionResult> VarientOptCrud()
         {
             APIResponseModel result = new APIResponseModel();
             var sa = new JsonSerializerSettings();
             try
             {
-               
-                  var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
+                var IN_Id = Convert.ToString(HttpContext.Request.Form["IN_Id"]);
+                var IN_Name = Convert.ToString(HttpContext.Request.Form["IN_Name"]);
+                //var IN_PrvImage = Convert.ToString(HttpContext.Request.Form["IN_PrvImage"]);
+                //var IN_Image = HttpContext.Request.Form.Files;
+                //var IN_sectionName = "testSection";
+                //var IN_sectionId = 1;
+                var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
                 // var createdBy = identity.Claims.FirstOrDefault(c => c.Type == "CreatedBy").Value;
-                IFormFileCollection IN_Image = HttpContext.Request.Form.Files;
-                var ImageName = _CategoryInputModel.Image.Count>0? string.Concat(Convert.ToString(Guid.NewGuid()) + "_" + _CategoryInputModel.Image.FirstOrDefault().FileName) :null;
-                if (!string.IsNullOrWhiteSpace(ImageName))
-                {
-                    var path = Path.Combine(this.Environment.WebRootPath, "Upload", "Category/", ImageName);
 
-                    using (FileStream stream = new FileStream(path, FileMode.Create))
-                    {
-                       await _CategoryInputModel.Image.FirstOrDefault().CopyToAsync(stream);
-                        stream.Close();
-                    }
-                }
-                _CategoryInputModel.ImagePath = string.IsNullOrWhiteSpace(ImageName) ? _CategoryInputModel.PrevImage : ImageName;
-                
+                //var ImageName = IN_Image.Count > 0 ? string.Concat(Convert.ToString(Guid.NewGuid()) + "_" + IN_Image.FirstOrDefault().FileName) : null;
+                //if (!string.IsNullOrWhiteSpace(ImageName))
+                //{
+                //    var path = Path.Combine(this.Environment.WebRootPath, "Upload", "Brand/", ImageName);
+
+                //    using (FileStream stream = new FileStream(path, FileMode.Create))
+                //    {
+                //        await IN_Image.FirstOrDefault().CopyToAsync(stream);
+                //        stream.Close();
+                //    }
+                //}
+                VarientOptInputModel model = new VarientOptInputModel()
+                {
+                    Id = string.IsNullOrWhiteSpace(IN_Id) ? null : Convert.ToInt16(IN_Id),
+                    OptionName = IN_Name,
+                    //SectionId = IN_sectionId,
+                    //SectionName = IN_sectionName,
+                    CreatedBy = "abc@gmail.com",//createdBy
+                    //ImagePath = string.IsNullOrWhiteSpace(ImageName) ? IN_PrvImage : ImageName
+                };
 
                 using (MasterBL _obj = new MasterBL())
                 {
-                    result = _obj.CategoryCrud(_CategoryInputModel);
+                    result = _obj.VarientOptCrud(model);
                 }
                 //return Json(result, sa);
                 return Json(result);
@@ -65,8 +73,7 @@ namespace SmartComputer_Admin.Controllers.Master
                 throw ex;
             }
         }
-
-        public JsonResult CategoryDataTable()
+        public JsonResult VarientOptDataTable()
         {
 
             APIResponseModel result = new APIResponseModel();
@@ -81,7 +88,7 @@ namespace SmartComputer_Admin.Controllers.Master
             string name = "";// !string.IsNullOrWhiteSpace(Convert.ToString(Request.Form["columns[1][search][value]"].FirstOrDefault())) ? Request.Form["columns[1][search][value]"].FirstOrDefault() : null;
             //string description = !string.IsNullOrWhiteSpace(Convert.ToString(Request.Form["columns[2][search][value]"].FirstOrDefault())) ? Request.Form["columns[2][search][value]"].FirstOrDefault() : null;
 
-            CategoryDatatableInputModel dataTableparam = new CategoryDatatableInputModel()
+            VarientOptDatatableInputModel dataTableparam = new VarientOptDatatableInputModel()
             {
                 IN_LIMITINDEX = 10,
                 IN_ORDERCOLUMN = 1, //!string.IsNullOrWhiteSpace(order) ? Convert.ToInt16(order) : 0,
@@ -92,11 +99,11 @@ namespace SmartComputer_Admin.Controllers.Master
 
             using (MasterBL objBL = new MasterBL())
             {
-                result = objBL.GetCategoryDataTable(dataTableparam);
+                result = objBL.GetVarientOptDataTable(dataTableparam);
             }
-            var dataTableData = new List<CategoryDataTableViewmodel>();
+            var dataTableData = new List<VarientOptDataTableViewmodel>();
             if (result != null && result.Data != null)
-                dataTableData = (Newtonsoft.Json.JsonConvert.DeserializeObject<List<CategoryDataTableViewmodel>>(Convert.ToString(result.Data)));
+                dataTableData = (Newtonsoft.Json.JsonConvert.DeserializeObject<List<VarientOptDataTableViewmodel>>(Convert.ToString(result.Data)));
 
             long totalRecoreCount = 0;
 
@@ -117,39 +124,38 @@ namespace SmartComputer_Admin.Controllers.Master
 
             return Json(dataTableData);
         }
-       
         [HttpPost]
-        public IActionResult CategoryActiveDeactive(CategoryActiveDeactiveInputModel _inputmodel)
+        public IActionResult VarientOptActiveDeactive()
         {
             APIResponseModel result = new APIResponseModel();
             var sa = new JsonSerializerSettings();
             try
             {
-                //var IN_Id = Convert.ToString(HttpContext.Request.Form["IN_Id"]);
-                //var IN_isActive = Convert.ToBoolean(HttpContext.Request.Form["IN_IsActive"]);
-                //var IN_Reason = Convert.ToString(HttpContext.Request.Form["IN_Reason"]);
+                var IN_Id = Convert.ToString(HttpContext.Request.Form["IN_Id"]);
+                var IN_isActive = Convert.ToBoolean(HttpContext.Request.Form["IN_IsActive"]);
+                var IN_Reason = Convert.ToString(HttpContext.Request.Form["IN_Reason"]);
 
-                //var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
-                //var createdBy = identity.Claims.FirstOrDefault(c => c.Type == "CreatedBy").Value;
+                var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
+                var createdBy = identity.Claims.FirstOrDefault(c => c.Type == "CreatedBy").Value;
 
-                //CategoryActiveDeactiveInputModel model = new CategoryActiveDeactiveInputModel()
-                //{
-                //    CategoryId =  Convert.ToInt16(IN_Id),
-                //    IsActive = IN_isActive,
-                //    DeletedBy = "abc@gmail.com",//createdBy
-                //    DeletionReason = IN_Reason// IN_Reason
-                //};
+                VarientOptActiveDeactiveInputModel model = new VarientOptActiveDeactiveInputModel()
+                {
+                    OptionId = Convert.ToInt16(IN_Id),
+                    IsActive = IN_isActive,
+                    DeletedBy = "abc@gmail.com",//createdBy
+                    DeletionReason = IN_Reason// IN_Reason
+                };
 
                 using (MasterBL _obj = new MasterBL())
                 {
-                    result = _obj.CategoryActiveDeactive(_inputmodel);
+                    result = _obj.VarientOptActiveDeactive(model);
                 }
                 //return Json(result, sa);
                 return Json(result);
 
             }
             catch (Exception ex)
-            { 
+            {
                 throw ex;
             }
         }

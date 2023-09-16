@@ -1,4 +1,5 @@
 ﻿using EntityLayer.DataTable;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic; 
 using System.Text;
@@ -12,11 +13,11 @@ namespace EntityLayer.Category
     }
     public class CategoryInputModel : CategoryBaseModel
     {
-        public string CategoryName { get; set; }
-        public int SectionId { get; set; }
-        public string SectionName { get; set; }
+        public string CategoryName { get; set; }     
         public string ImagePath { get; set; }
         public string CreatedBy { get; set; }
+        public IFormFileCollection Image { get; set; }
+        public string PrevImage { get; set; }
 
     }
 
@@ -31,9 +32,10 @@ namespace EntityLayer.Category
         public CategoryInputDBModel(CategoryActiveDeactiveInputModel inputModel)
         {
             IN_ID = inputModel.CategoryId;
-           IN_DeletedBy= inputModel.DeletedBy;
-            IN_DeletionReason= inputModel.DeletionReason;
+            IN_DeletedBy = inputModel.DeletedBy;
+            IN_DeletionReason = inputModel.DeletionReason;
             IN_ISACTIVE = inputModel.IsActive;
+
         }
         public string IN_ACTION { get; set; }
         public int? IN_ID { get; set; }

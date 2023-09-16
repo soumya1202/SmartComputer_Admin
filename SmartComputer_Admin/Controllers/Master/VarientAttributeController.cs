@@ -3,6 +3,8 @@ using EntityLayer.Brand;
 using EntityLayer;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using EntityLayer.Master;
+using EntityLayer.VarientAtr;
 
 namespace SmartComputer_Admin.Controllers.Master
 {
@@ -21,7 +23,58 @@ namespace SmartComputer_Admin.Controllers.Master
         {
             return View("Views/Master/VarientAttribute.cshtml");
         }
-        public JsonResult BrandDataTable()
+        [HttpPost]
+        public async Task<IActionResult> VarientAtrCrud()
+        {
+            APIResponseModel result = new APIResponseModel();
+            var sa = new JsonSerializerSettings();
+            try
+            {
+                var IN_Id = Convert.ToString(HttpContext.Request.Form["IN_Id"]);
+                var IN_Name = Convert.ToString(HttpContext.Request.Form["IN_Name"]);
+                //var IN_PrvImage = Convert.ToString(HttpContext.Request.Form["IN_PrvImage"]);
+                //var IN_Image = HttpContext.Request.Form.Files;
+                //var IN_sectionName = "testSection";
+                //var IN_sectionId = 1;
+                var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
+                // var createdBy = identity.Claims.FirstOrDefault(c => c.Type == "CreatedBy").Value;
+
+                //var ImageName = IN_Image.Count > 0 ? string.Concat(Convert.ToString(Guid.NewGuid()) + "_" + IN_Image.FirstOrDefault().FileName) : null;
+                //if (!string.IsNullOrWhiteSpace(ImageName))
+                //{
+                //    var path = Path.Combine(this.Environment.WebRootPath, "Upload", "Brand/", ImageName);
+
+                //    using (FileStream stream = new FileStream(path, FileMode.Create))
+                //    {
+                //        await IN_Image.FirstOrDefault().CopyToAsync(stream);
+                //        stream.Close();
+                //    }
+                //}
+                VarientAtrInputModel model = new VarientAtrInputModel()
+                {
+                    Id = string.IsNullOrWhiteSpace(IN_Id) ? null : Convert.ToInt16(IN_Id),
+                    AttributeName = IN_Name,
+                    //SectionId = IN_sectionId,
+                    //SectionName = IN_sectionName,
+                    CreatedBy = "abc@gmail.com",//createdBy
+                    //ImagePath = string.IsNullOrWhiteSpace(ImageName) ? IN_PrvImage : ImageName
+                };
+
+                using (MasterBL _obj = new MasterBL())
+                {
+                    result = _obj.VarientAtrCrud(model);
+                }
+                //return Json(result, sa);
+                return Json(result);
+
+            }
+            catch (Exception ex)
+            {
+                //return Json(result, sa);
+                throw ex;
+            }
+        }
+        public JsonResult VarientAtrDataTable()
         {
 
             APIResponseModel result = new APIResponseModel();
@@ -36,7 +89,7 @@ namespace SmartComputer_Admin.Controllers.Master
             string name = "";// !string.IsNullOrWhiteSpace(Convert.ToString(Request.Form["columns[1][search][value]"].FirstOrDefault())) ? Request.Form["columns[1][search][value]"].FirstOrDefault() : null;
             //string description = !string.IsNullOrWhiteSpace(Convert.ToString(Request.Form["columns[2][search][value]"].FirstOrDefault())) ? Request.Form["columns[2][search][value]"].FirstOrDefault() : null;
 
-            BrandDatatableInputModel dataTableparam = new BrandDatatableInputModel()
+            VarientAtrDatatableInputModel dataTableparam = new VarientAtrDatatableInputModel()
             {
                 IN_LIMITINDEX = 10,
                 IN_ORDERCOLUMN = 1, //!string.IsNullOrWhiteSpace(order) ? Convert.ToInt16(order) : 0,
@@ -47,11 +100,11 @@ namespace SmartComputer_Admin.Controllers.Master
 
             using (MasterBL objBL = new MasterBL())
             {
-                result = objBL.GetBrandDataTable(dataTableparam);
+                result = objBL.GetVarientAtrDataTable(dataTableparam);
             }
-            var dataTableData = new List<BrandDataTableViewmodel>();
+            var dataTableData = new List<VarientAtrDataTableViewmodel>();
             if (result != null && result.Data != null)
-                dataTableData = (Newtonsoft.Json.JsonConvert.DeserializeObject<List<BrandDataTableViewmodel>>(Convert.ToString(result.Data)));
+                dataTableData = (Newtonsoft.Json.JsonConvert.DeserializeObject<List<VarientAtrDataTableViewmodel>>(Convert.ToString(result.Data)));
 
             long totalRecoreCount = 0;
 
@@ -71,6 +124,41 @@ namespace SmartComputer_Admin.Controllers.Master
             };
 
             return Json(dataTableData);
+        }
+        [HttpPost]
+        public IActionResult VarientAtrActiveDeactive()
+        {
+            APIResponseModel result = new APIResponseModel();
+            var sa = new JsonSerializerSettings();
+            try
+            {
+                var IN_Id = Convert.ToString(HttpContext.Request.Form["IN_Id"]);
+                var IN_isActive = Convert.ToBoolean(HttpContext.Request.Form["IN_IsActive"]);
+                var IN_Reason = Convert.ToString(HttpContext.Request.Form["IN_Reason"]);
+
+                var identity = (System.Security.Claims.ClaimsIdentity)HttpContext.User.Identity;
+                var createdBy = identity.Claims.FirstOrDefault(c => c.Type == "CreatedBy").Value;
+
+                VarientAtrActiveDeactiveInputModel model = new VarientAtrActiveDeactiveInputModel()
+                {
+                    AttributeId = Convert.ToInt16(IN_Id),
+                    IsActive = IN_isActive,
+                    DeletedBy = "abc@gmail.com",//createdBy
+                    DeletionReason = IN_Reason// IN_Reason
+                };
+
+                using (MasterBL _obj = new MasterBL())
+                {
+                    result = _obj.VarientAtrActiveDeactive(model);
+                }
+                //return Json(result, sa);
+                return Json(result);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

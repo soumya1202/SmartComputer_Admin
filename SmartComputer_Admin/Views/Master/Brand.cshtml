@@ -102,7 +102,7 @@
         <div class="table-responsive tableTheme">
 
             @* <img src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Category Image" />*@
-            <table id="tblCategory" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
+            <table id="tblBrand" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
                 <thead>
                     <tr>
                         <th class="dsplynone">Id</th>
@@ -138,7 +138,7 @@
                     <img src="~/images/done.png" alt="">
                     <h3>Thank you!</h3>
                     @*<p>Category added successfully</p>*@
-                    <p id="txtCategoryCrudResultMsg"></p>
+                    <p id="txtBrandCrudResultMsg"></p>
                 </div>
             </div>
         </div>
@@ -179,7 +179,7 @@
                     <img src="~/images/confirm.png" alt="">
                     <p><span id="spnActiveDeactive"></span><strong><span id="spnBrandDeleteConfirmationText"></span></strong></p>
                     <div class="btn-groups">
-                        <input type="hidden" id="txtHiddenCatId" />
+                        <input type="hidden" id="txtHiddenBrandId" />
                         <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="BrandActiveProcess(this)">Yes</button>
                         <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="BrandDActiveProcess(this)">Yes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>

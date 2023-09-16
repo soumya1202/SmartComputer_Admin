@@ -21,6 +21,11 @@
         public const string PROC_FETCH_BRAND = "PROC_FETCH_BRAND";
         public const string PROC_INSERTUPDATE_BRAND = "PROC_BRAND_CUD";
         #endregion
+        #region VarientAttribute
+        public const string PROC_FETCH_VARIENTATR = "PROC_FETCH_VARIENTATR";
+        public const string PROC_INSERTUPDATE_VARIENTATR = "PROC_INSERTUPDATE_VARIENTATR";
+        public const string PROC_ACTIVEDACTIVE_VARIENTATR = "PROC_ACTIVEDACTIVE_VARIENTATR";
+        #endregion
         public const string PROC_SECTIONMANAGEMENT_CUD = "PROC_SECTIONMANAGEMENT_CUD";
         public const string PROC_SECTIONMANAGEMENT_GET = "PROC_SECTIONMANAGEMENT_GET";
         public const string PROC_FETCH_ADMINUSER = "PROC_FETCH_ADMINUSER";

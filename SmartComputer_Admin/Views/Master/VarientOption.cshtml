@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "VarientAttribute";
+    ViewData["Title"] = "VarientOption";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -20,60 +20,77 @@
         <div class="row align-items-end pt-3 pb-2">
             <div class="col-md-6 order-2 order-md-1">
                 <div class="dashboardInfo">
-                    <p>Varient Attribute Management</p>
+                    <p>Varient Option Management</p>
                 </div>
             </div>
             <div class="col-md-6 order-1 order-md-2">
                 <div class="btn-group float-right">
-                    <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddVarAtr" onclick="AddVarAtrClick()"> <img src="~/images/add.png" alt="">	Add Varient Attribute</button>
+                    <button type="button" class="btn-Category dropdown-toggle btnAddFeature" id="btnAddVarOpt" onclick="AddVarOptClick()"> <img src="~/images/add.png" alt="">	Add Varient Option</button>
 
-                    <div id="addVarAtr" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
+                    <div id="addVarOpt" class="dropdown-menu dropdown-menu-lg-right customDDmenu singleForm formFquipments">
                         <span class="closeCategory close"><img src="~/images/cancel.png" alt=""></span>
                         <form class="px-4 py-3">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>Add Varient Attribute</h4>
+                                    <h4>Add Varient Option Details</h4>
                                 </div>
                             </div>
                             <div class="row">
-                                <input type="hidden" id="txtHiddenVarAtrId" />
+                                <input type="hidden" id="txtHiddenVarOptId" />
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="addVarAtrId">Varient Attribute Name</label>
-                                        <input type="text" class="form-control" id="txt_Varatr" placeholder="Add Varient Attribute Name" onblur="CheckOnlyIsRequired(this,'Varient Attribute Name')">
+                                        <label for="addVarOptId">Option Name</label>
+                                        <input type="text" class="form-control" id="txt_VarOpt" placeholder="Add Option Name" onblur="CheckOnlyIsRequired(this,'Option Name')">
                                     </div>
                                 </div>
-                                @*<div class="col-md-12">
+                                <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="addBrandId">SubCategory</label>
-                                        <select class="form-control" id="BrandSubcat" name="brandSubcat">*@
-                                            @* subcategory dropdown*@
-                                            @*<option>Subcategory 1</option>
-                                            <option>Subcategory 2</option>
-                                            <option>Subcategory 3</option>
-                                        </select>
+                                        <label for="addVarOptId">Add Varient Attribute</label>
+                                        <div class="form-control">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <input type="checkbox" id="Colour" name="Colour" value="Colour">
+                                                    <label for="vehicle1"> Colour</label><br>
+                                                    <input type="checkbox" id="Size" name="Size" value="Size">
+                                                    <label for="vehicle1"> Size</label><br>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="checkbox" id="Type" name="Type" value="Type">
+                                                    <label for="vehicle1"> Type</label><br>
+                                                    <input type="checkbox" id="Processor" name="Processor" value="Processor">
+                                                    <label for="vehicle1"> Processor</label><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @*  <select class="form-control" id="BrandSubcat" name="brandSubcat">*@
+                                        @* subcategory dropdown*@
+                                        @* <option>Subcategory 1</option>
+                                        <option>Subcategory 2</option>
+                                        <option>Subcategory 3</option>
+                                        </select>*@
                                     </div>
-                                </div>*@
+                                </div>
                                 @*<div class="col-md-12">
                                     <div class="form-group">
                                         <label for="addBrandId">Image</label>
                                         <input type="file" accept="image/*" required class="form-control cat_Img" id="brand_Img" onblur="CheckOnlyIsRequired(this,'Brand Image')">
                                     </div>
-                                </div>*@
-                                @*<div class="col-md-12" id="divUploadedImg" style="display:none">
+                                </div>
+                                <div class="col-md-12" id="divUploadedImg" style="display:none">
                                     <div class="form-group">
                                         <label for="brand_PrevImage">Uploaded Image</label>
                                         <img src="" class="imgEnlarge" style="width: 100px; height: 100px;" id="brand_PrevImage" />
                                     </div>
                                 </div>*@
 
-                                <input type="hidden" id="txtHiddenVarAtrId" />
-                                <input type="hidden" id="txthiddenPrvImage" />
+                                <input type="hidden" id="txtHiddenVarOptId" />
+                                @*<input type="hidden" id="txthiddenPrvImage" />*@
                             </div>
                             <div class="dropdown-divider mb-4"></div>
                             <div class="btn-groups">
 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddVarAtr()">Save</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" onclick="AddVarOpt()">Save</button>
                                 <button type="button" class="btn btn-secondary closecategory">Cancel</button>
                             </div>
                         </form>
@@ -85,7 +102,7 @@
         <div class="table-responsive tableTheme">
 
             @* <img src="https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Category Image" />*@
-            <table id="tblVarAtr" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
+            <table id="tblVarOpt" class="table table-hover tblCategory table-md themeTable table-striped" style="width:70%">
                 <thead>
                     <tr>
                         <th class="dsplynone">Id</th>
@@ -109,7 +126,7 @@
 
     </div>
 
-    <div class="modal fade alertModal" id="VarAtrAddDone" tabindex="-1" role="dialog" aria-labelledby="CategoryAddTitle" aria-hidden="true">
+    <div class="modal fade alertModal" id="VarOptAddDone" tabindex="-1" role="dialog" aria-labelledby="VarOptAddTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,12 +138,12 @@
                     <img src="~/images/done.png" alt="">
                     <h3>Thank you!</h3>
                     @*<p>Category added successfully</p>*@
-                    <p id="txtVarAtrCrudResultMsg"></p>
+                    <p id="txtVarOptCrudResultMsg"></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade alertModal dangerModal" id="VarAtrError" tabindex="-1" role="dialog" aria-labelledby="VarAtrDangerTitle" aria-hidden="true">
+    <div class="modal fade alertModal dangerModal" id="VarOptError" tabindex="-1" role="dialog" aria-labelledby="VarOptDangerTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,13 +154,13 @@
                 <div class="modal-body">
                     <img src="~/images/error.png" alt="">
                     <h3>Error!</h3>
-                    <p id="txtVarAtrDangerMsg"></p>
+                    <p id="txtVarOptDangerMsg"></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade alertModal" id="VarAtrActiveDeactiveModel" tabindex="-1" role="dialog" aria-labelledby="VarAtrAddTitle" aria-hidden="true">
+    <div class="modal fade alertModal" id="VarOptActiveDeactiveModel" tabindex="-1" role="dialog" aria-labelledby="VarOptAddTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -154,17 +171,17 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="addVarAtrId">Reason</label>
+                        <label for="addVarOptId">Reason</label>
                         <textarea class="form-control" id="txt_Reason" placeholder="Reason" onchange="buttonYesActive()" onblur="CheckOnlyIsRequired(this,'Reason')"></textarea>
                     </div>
                 </div>
                 <div class="modal-body">
                     <img src="~/images/confirm.png" alt="">
-                    <p><span id="spnActiveDeactive"></span><strong><span id="spnVarAtrDeleteConfirmationText"></span></strong></p>
+                    <p><span id="spnActiveDeactive"></span><strong><span id="spnVarOptDeleteConfirmationText"></span></strong></p>
                     <div class="btn-groups">
-                        <input type="hidden" id="txtHiddenVarAtrId" />
-                        <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="VarAtrActiveProcess(this)">Yes</button>
-                        <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="VarAtrDActiveProcess(this)">Yes</button>
+                        <input type="hidden" id="txtHiddenVarOptId" />
+                        <button type="button" id="btnActive" disabled class="btn btn-primary" style="Display:none" onclick="VarOptActiveProcess(this)">Yes</button>
+                        <button type="button" id="btnDeactive" disabled class="btn btn-primary" style="Display:none" onclick="VarOptDActiveProcess(this)">Yes</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -174,6 +191,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/scripts/common.js"></script>
-    <script src="~/scripts/Master/VarientAttribute.js "></script>
+        <script src="~/scripts/common.js"></script>
+    <script src="~/scripts/Master/VarientOption.js"></script>
 }
+

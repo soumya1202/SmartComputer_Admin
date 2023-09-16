@@ -56,7 +56,7 @@ function AddVarAtr() {
 function VarAtrCrud(formData) {
     $.ajax({
         type: "POST",
-        url: '/VarientAttribute/VarAtrCrud',
+        url: '/VarientAttribute/VarientAtrCrud',
         data: formData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -142,7 +142,7 @@ function ServerSideVarAtrDataTable() {
         "destroy": true,
         scrollX: false,
         "ajax": {
-            "url": "/VarientAttribute/VarientAttributeDataTable",
+            "url": "/VarientAttribute/VarientAtrDataTable",
             dataSrc: ''
         },
         "columns": [{
@@ -283,7 +283,7 @@ function VarAtrDActiveProcess(element) {
 function VarAtrActiveDeactive(formData) {
     $.ajax({
         type: "POST",
-        url: '/VarientAttribute/VarientAttributeActiveDeactive',
+        url: '/VarientAttribute/VarientAtrActiveDeactive',
         data: formData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
