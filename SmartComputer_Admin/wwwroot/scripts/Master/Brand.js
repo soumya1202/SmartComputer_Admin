@@ -144,6 +144,9 @@ function ServerSideBrandDataTable() {
         "ajax": {
             "url": "/Brand/BrandDataTable",
             dataSrc: ''
+            //success: function (result) {
+            //    alert(JSON.stringify(result));
+            //}
         },
         "columns": [{
             "data": "id",
@@ -151,7 +154,7 @@ function ServerSideBrandDataTable() {
 
         },
         {
-            "data": "BrandName",
+            "data": "brandName",
             "sClass": "brandName"
         },
         {

@@ -1,26 +1,38 @@
-﻿$(document).ready(function () {
-    //$('.tblCategory').dataTable();
-    $('.closecategory').click(function () {
-        $('#addCategory').removeClass('active');
-    });
+﻿//$(document).ready(function () {
+//    //$('.tblCategory').dataTable();
+//    $('.closecategory').click(function () {
+//        $('#addSubCategory').removeClass('active');
+//    });
+//    alert("test");
+//    ServerSideSubCategoryDataTable();
+//    //DatableSearchColumnWise("tblCategory");
+
+//});
+
+$(document).ready(function () {
+    // $('.tblCategory').dataTable();
+    $('.closesubcategory').click(function () {
+        $('#addSubCategory').removeClass('active');
+    });     
+    ServerSideSubCategoryDataTable();
     ServerSideCategoryDataTable();
     //DatableSearchColumnWise("tblCategory");
 
 });
 
 function OpenCrudpopUp() {
-    $('#addCategory').removeClass('active');
+    $('#addSubCategory').removeClass('active');
     // show Modal
-    $('#CategoryAddDone').modal('show');
+    $('#SubCategoryAddDone').modal('show');
 }
 
-function AddCategory() {
+function AddSubCategory() {
     RemoveAllFieldErrorBorderColor();
     var isValid = 1;
     var formData = new FormData();
     var catName = $("#txt_category").val().trim();
     var catImage = $("#cat_Img").val().trim();
-    var catId = $('#txtHiddenCatId').val().trim();
+    var catId = $('#txtHiddenSubCatId').val().trim();
     if (catId.length > 0) {
         formData.append("IN_Id", catId);
     }
@@ -37,15 +49,16 @@ function AddCategory() {
         formData.append("IN_Name", catName);
         formData.append("IN_Image", catImage);
         //  formData.append("IN_IsActive", true);
-        CategoryCrud(formData);
+        SubCategoryCrud(formData);
         ResetField();
     }
 
 }
-function CategoryCrud(formData) {
+function SubCategoryCrud(formData) {
+    alert('test');
     $.ajax({
         type: "POST",
-        url: '/Category/CategoryCrud',
+        url: '/SubCategory/SubCategoryCrud',
         data: formData,
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -53,13 +66,13 @@ function CategoryCrud(formData) {
         processData: false,
         success: function (result) {
             // alert(result.IsSuccess);
-            $('#addCategory').removeClass('active');
+            $('#addSubCategory').removeClass('active');
             ResetField();
             //alert(JSON.parse(result));
             if (result.ReturnCode == 200) {
-                ServerSideCategoryDataTable();
+                ServerSideSubCategoryDataTable();
                 //DatableSearchColumnWise("tblCategory");
-                $("#txtCategoryCrudResultMsg").text(result.Message);
+                $("#txtSubCategoryCrudResultMsg").text(result.Message);
                 OpenCrudpopUp();
             }
             else {
@@ -73,56 +86,71 @@ function CategoryCrud(formData) {
 function ResetField() {
     $("#txt_category").val("");
     $("#cat_Img").val("");
-    $('#txtHiddenCatId').val("");
+    $('#txtHiddenSubCatId').val("");
 }
 
-function ServerSideCategoryDataTable() {
-
-    $('.tblCategory').DataTable({
+function ServerSideSubCategoryDataTable() {
+    alert('2');
+    $('.tblSubCategory').DataTable({
         "processing": true,
         "destroy": true,
         scrollX: false,
         "ajax": {
-            "url": "/SubCategory/CategoryDataTable",
-            dataSrc: ''
+            "url": "/SubCategory/SubCategoryDataTable",
+            dataSrc: '',
+            //success: function (result) {
+            //    alert(JSON.stringify(result));
+            //}
         },
         "columns": [{
             "data": "id",
-            "sClass": "dsplynone hiddenCatId",
+            "sClass": "dsplynone hiddenSubCatId",
 
         },
         {
-            "data": "categoryName",
-            "sClass": "catName"
+            "data": "subCategoryName", 
+            "sClass": " "
         },
 
         {
-            'data': 'isActive',
-            "sClass": " ",
-            'render': function (data, type, row) {
-                if (data) {
-                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">DeActive</button></div ></div>';
+                "data": "imagePath",
+            "sClass": "dsplynone prvImagePath"
+            },
+            {
+                'data': 'imagePath',
+                "sClass": " ",
+                'render': function (data) {
+                    return '<img src="/Upload/Category/' + data + '" class="imgEnlarge" style="width: 30px; height: 30px;"  id="cat_PrevImage"/>';
+
                 }
-                else {
-                    return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">Active</button></div ></div>';
-                }
+            },
+            {
+                'data': 'isActive',
+                "sClass": " ",
+                'render': function (data, type, row) {
+                    if (data) {
+                        return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">DeActive</button></div ></div>';
+                    }
+                    else {
+                        return '<div class="btn-group actionButton"><button type= "button" class="dropdown-toggle" data-toggle="dropdown" data- display="dynamic" aria- haspopup="true" aria-expanded="false">Button</button><div class="dropdown-menu dropdown-menu-lg-right"><button class="dropdown-item btn-editCategory" type="button" onclick="EditCategory(this)">Edit</button><button class="dropdown-item btn-deleteCategory" type="button" onclick="ActiveDActiveCat(' + data + ', ' + row["id"] + ' )">Active</button></div ></div>';
+                    }
 
 
+                }
             }
-        }
         ]
     });
 
 
 }
 
-function EditCategory(element) {
+function EditSubCategory(element) {
     RemoveAllFieldErrorBorderColor();
-    var catId = $(element).closest("tr").find('.hiddenCatId').text().trim();
-    var catname = $(element).closest("tr").find('.catName').text().trim();
-    var desc = $(element).closest("tr").find('.catDesc').text().trim();
-    $('#txtHiddenCatId').val(catId);
-    $("#txt_category").val(catname);
+    var subcatId = $(element).closest("tr").find('.hiddenSubCatId').text().trim();
+    var subcatname = $(element).closest("tr").find('.subcatName').text().trim();
+    //var desc = $(element).closest("tr").find('.catDesc').text().trim();
+    $('#txtHiddenSubCatId').val(subcatId);
+    $("#txt_category").val(subcatname);
     /* $("#txt_desc").val(desc);*/
     OpenAddPopUp();
 }
@@ -131,8 +159,8 @@ function DeleteCategory(id) {
         alert("Inernal server error");
         return false;
     }
-    $("#txtHiddenCatId").val(id);
-    $('#CategoryDeleteModel').modal('show');
+    $("#txtHiddenSubCatId").val(id);
+    $('#SubCategoryDeleteModel').modal('show');
     //if (confirm('Are you sure to delete this!')) {
     //    var formData = new FormData()
     //    formData.append("IN_Id", id);
@@ -141,35 +169,54 @@ function DeleteCategory(id) {
     //    ServerSideCategoryDataTable();
     //}
 }
-function OpenAddPopUp() {
+function OpenAddPopUp() {addCategory
     //$('#addCategory').modal('show');
     //$('#addCategory').addClass('active');
     //$('html, body').animate({
     //    scrollTop: $('#addCategory').offset().top - 30
     //}, 500);
-    $('#addCategory').addClass('active');
+    $('#addSubCategory').addClass('active');
     $('html, body').animate({
-        scrollTop: $('#addCategory').offset().top - 30
+        scrollTop: $('#addSubCategory').offset().top - 30
     }, 500);
 }
 function AddSectionClick() {
+    alert('1');
     ResetField();
-    $('#addCategory').addClass('active');
+    $('#addSubCategory').addClass('active');
     $('html, body').animate({
-        scrollTop: $('#addCategory').offset().top - 30
+        scrollTop: $('#addSubCategory').offset().top - 30
     }, 500);
 }
-function DeleteCategoryProcess(element) {
-    var id = $("#txtHiddenCatId").val();
+function DeleteSubCategoryProcess(element) {
+    var id = $("#txtHiddenSubCatId").val();
     if (id == null || id.length == 0) {
         alert("Inernal server error");
         return false;
     }
-    $('#CategoryDeleteModel').modal('hide');
+    $('#SubCategoryDeleteModel').modal('hide');
     var formData = new FormData()
     formData.append("IN_Id", id);
     formData.append("IN_IsDelete", true);
-    CategoryCrud(formData);
-    ServerSideCategoryDataTable();
+    SubCategoryCrud(formData);
+    ServerSideSubCategoryDataTable();
+}
+
+function ServerSideCategoryDataTable() {
+    alert('1');
+    $.ajax({
+        type: "POST",
+        url: "/Category/CategoryDataTable",
+        data: "{}",
+        success: function (data) {
+            var s = '<option value="-1">Please Select a Category</option>';
+            for (var i = 0; i < data.length; i++) {
+                s += '<option value="' + data[i].id + '">' + data[i].categoryName + '</option>';
+            }
+            $(".txt_category").html(s);
+        }
+    });  
+   
+
 }
 

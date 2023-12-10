@@ -1,5 +1,5 @@
 ﻿using DataAccessLayer.DbProcedure.SQLFactory;
-using EntityLayer.VarientAtr;
+using EntityLayer.Brand;
 using EntityLayer;
 using Persistence.Helper;
 using System;
@@ -7,22 +7,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EntityLayer.Brand;
-//using EntityLayer.Brand;
+using static EntityLayer.Product.ProductEL;
 
 namespace DAL.Repository
 {
-    public class VarientAtrRepo
+    public class ProductRepo
     {
-        public List<FetchVarientAtr> FetchVarientAtr()
+        public List<FetchProduct> FetchProduct()
         {
-            var result = SQLDbHelpers.DataTableResultAsModelList<FetchVarientAtr>(null, SQLProcedureNames.PROC_FETCH_VARIENT_ATTRIBUTE);
+            var result = SQLDbHelpers.DataTableResultAsModelList<FetchProduct>(null, SQLProcedureNames.PROC_FETCH_BRAND);
             return result;
         }
-        public APIResponseModel VarientAtrInsertUpdate(VarientAtrInputModel inputModel)
+        public APIResponseModel ProductInsertUpdate(ProductInputModel inputModel)
         {
             APIResponseModel result = new APIResponseModel();
-            VarientAtrInputDBModel DBinputmodel = new VarientAtrInputDBModel(inputModel);
+            ProductInputDBModel DBinputmodel = new ProductInputDBModel(inputModel);
             if (DBinputmodel.IN_ID > 0)
             {
                 DBinputmodel.IN_ACTION = "UPDATE";
@@ -32,19 +31,19 @@ namespace DAL.Repository
                 DBinputmodel.IN_ID = 0;
                 DBinputmodel.IN_ACTION = "INSERT";
             }
-            var result1 = SQLDbHelpers.SaveRecord<APIResponseBaseModel>(DBinputmodel, SQLProcedureNames.PROC_INSERTUPDATE_VARIENTATR);
+            var result1 = SQLDbHelpers.SaveRecord<APIResponseBaseModel>(DBinputmodel, SQLProcedureNames.PROC_INSERTUPDATE_BRAND);
             result.ReturnCode = result1.ReturnCode;
             result.ReturnMessage = result1.ReturnMessage;
             return result;
-        }       
-        public APIResponseModel VarientAtrActiveDeactive(VarientAtrActiveDeactiveInputModel inputModel)
+        }
+        public APIResponseModel ProductActiveDeactive(ProductActiveDeactiveInputModel inputModel)
         {
             APIResponseModel result = new APIResponseModel();
-            VarientAtrInputDBModel DBinputmodel = new VarientAtrInputDBModel(inputModel);
+            ProductInputDBModel DBinputmodel = new ProductInputDBModel(inputModel);
 
             DBinputmodel.IN_ACTION = "ACTIVE/INACTIVE";
 
-            var result1 = SQLDbHelpers.SaveRecord<APIResponseBaseModel>(DBinputmodel, SQLProcedureNames.PROC_ACTIVEDACTIVE_VARIENTATR);
+            var result1 = SQLDbHelpers.SaveRecord<APIResponseBaseModel>(DBinputmodel, SQLProcedureNames.PROC_INSERTUPDATE_BRAND);
             result.ReturnCode = result1.ReturnCode;
             result.ReturnMessage = result1.ReturnMessage;
             return result;

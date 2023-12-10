@@ -7,7 +7,7 @@
         public const string PROC_GET_CUSTOMER_PASSWORD_INFO = "PROC_GET_CUSTOMER_PASSWORD_INFO";
         #region Category
         public const string PROC_FETCH_CATEGORY = "PROC_FETCH_CATEGORY";
-        public const string PROC_INSERTUPDATE_CATEGORY = "PROC_INSERTUPDATE_CATEGORY";
+        public const string PROC_INSERTUPDATE_CATEGORY = "PROC_CATEGORY_CUD";
         #endregion
         #region Sub Category
         public const string PROC_SUBCATEGORY_CUD = "PROC_SUBCATEGORY_CUD";
@@ -18,13 +18,16 @@
         public const string PROC_FETCH_SECTION = "PROC_FETCH_SECTION";
         #endregion
         #region Brand
-        public const string PROC_FETCH_BRAND = "PROC_FETCH_BRAND";
+        public const string PROC_FETCH_BRAND = "PROC_BRAND_CUD";
         public const string PROC_INSERTUPDATE_BRAND = "PROC_BRAND_CUD";
         #endregion
         #region VarientAttribute
-        public const string PROC_FETCH_VARIENTATR = "PROC_FETCH_VARIENTATR";
+        public const string PROC_FETCH_VARIENT_ATTRIBUTE = "PROC_FETCH_VARIENT_ATTRIBUTE";
         public const string PROC_INSERTUPDATE_VARIENTATR = "PROC_INSERTUPDATE_VARIENTATR";
         public const string PROC_ACTIVEDACTIVE_VARIENTATR = "PROC_ACTIVEDACTIVE_VARIENTATR";
+        #endregion
+        #region Varientoption
+        public const string PROC_FETCH_ITEM_VARIENT_OPTION = "PROC_FETCH_ITEM_VARIENT_OPTION";
         #endregion
         public const string PROC_SECTIONMANAGEMENT_CUD = "PROC_SECTIONMANAGEMENT_CUD";
         public const string PROC_SECTIONMANAGEMENT_GET = "PROC_SECTIONMANAGEMENT_GET";

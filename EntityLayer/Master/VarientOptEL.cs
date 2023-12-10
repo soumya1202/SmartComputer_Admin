@@ -51,7 +51,7 @@ namespace EntityLayer.VarientOpt
     public class VarientOptViewModel
     {
         public int Id { get; set; }
-        public string VarientOptName { get; set; }
+        public string VarientName { get; set; }
         //public string SectionId { get; set; }
         public bool IsActive { get; set; }
         //public string ImagePath { get; set; }
@@ -61,7 +61,7 @@ namespace EntityLayer.VarientOpt
         public string IN_NAME { get; set; }
         //public string IN_DESC { get; set; }
     }
-    public class VarientOptDataTableViewmodel : VarientOptBaseModel
+    public class VarientOptDataTableViewmodel : VarientOptViewModel
     {
         public Int64 TOTALCOUNT { get; set; }
     }
@@ -75,7 +75,7 @@ namespace EntityLayer.VarientOpt
     public class FetchVarientOpt
     {
         public int Id { get; set; }
-        public string OptionName { get; set; }
+        public string VarientName { get; set; }
         //public int SectionId { get; set; }
         //public string SectionName { get; set; }
         //public string ImagePath { get; set; }

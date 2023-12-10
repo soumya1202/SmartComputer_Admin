@@ -14,7 +14,7 @@ namespace DAL.Repository
     {
         public List<FetchVarientOpt> FetchVarientOpt()
         {
-            var result = SQLDbHelpers.DataTableResultAsModelList<FetchVarientOpt>(null, SQLProcedureNames.PROC_FETCH_VARIENTATR);
+            var result = SQLDbHelpers.DataTableResultAsModelList<FetchVarientOpt>(null, SQLProcedureNames.PROC_FETCH_ITEM_VARIENT_OPTION);
             return result;
         }
         public APIResponseModel VarientOptInsertUpdate(VarientOptInputModel inputModel)

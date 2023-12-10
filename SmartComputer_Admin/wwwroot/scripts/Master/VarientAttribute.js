@@ -144,6 +144,9 @@ function ServerSideVarAtrDataTable() {
         "ajax": {
             "url": "/VarientAttribute/VarientAtrDataTable",
             dataSrc: ''
+            //success: function (result) {
+            //    alert(JSON.stringify(result));
+            //}
         },
         "columns": [{
             "data": "id",
@@ -151,7 +154,7 @@ function ServerSideVarAtrDataTable() {
 
         },
         {
-            "data": "VarientAttributeName",
+            "data": "attributeName",
             "sClass": "varatrName"
         },
         //{

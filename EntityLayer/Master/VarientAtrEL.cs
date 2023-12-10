@@ -52,7 +52,7 @@ namespace EntityLayer.VarientAtr
     public class VarientAtrViewModel
     {
         public int Id { get; set; }
-        public string VarientAtrName { get; set; }
+        public string AttributeName { get; set; }
         //public string SectionId { get; set; }
         public bool IsActive { get; set; }
         //public string ImagePath { get; set; }
@@ -62,7 +62,7 @@ namespace EntityLayer.VarientAtr
         public string IN_NAME { get; set; }
         //public string IN_DESC { get; set; }
     }
-    public class VarientAtrDataTableViewmodel : VarientAtrBaseModel
+    public class VarientAtrDataTableViewmodel : VarientAtrViewModel
     {
         public Int64 TOTALCOUNT { get; set; }
     } 

@@ -2,16 +2,17 @@
 using EntityLayer;
 using EntityLayer.Brand;
 using EntityLayer.Category;
+using EntityLayer.Master;
 using EntityLayer.VarientAtr;
 using EntityLayer.VarientOpt;
 using Newtonsoft.Json;
+using static EntityLayer.Product.ProductEL;
 
 namespace BusinessLogicLayer.Master
 {
     public class MasterBL : IDisposable
     {
-       
-        #region category
+              
         public MasterBL()
         {
             
@@ -24,6 +25,8 @@ namespace BusinessLogicLayer.Master
             }
 
         }
+
+        #region Category
         public APIResponseModel CategoryCrud(CategoryInputModel inputModel)
         {
             try
@@ -98,6 +101,57 @@ namespace BusinessLogicLayer.Master
         }
         #endregion
 
+        #region SubCategory
+        public APIResponseModel SubCategoryCrud(SubCategoryInputModel inputModel)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                SubCategoryRepo _SubCategoryRepo = new SubCategoryRepo();
+                result = _SubCategoryRepo.SubCategoriesInsertUpdate(inputModel);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public APIResponseModel SubCategoryActiveDeactive(SubCategoryActiveDeactiveInputModel inputModel)
+        {
+            try
+            {
+                //APIResponseModel result = new APIResponseModel();
+
+                APIResponseModel result = new APIResponseModel();
+                SubCategoryRepo _SubCategoryRepo = new SubCategoryRepo();
+                result = _SubCategoryRepo.SubCategoriesActiveDeactive(inputModel);
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+        public APIResponseModel GetSubCategoryDataTable(SubCategoryDatatableInputModel model)
+        {
+            try
+            {
+                APIResponseModel result = new APIResponseModel();
+                SubCategoryRepo _SubCategoryRepo = new SubCategoryRepo();
+                result.Data = JsonConvert.SerializeObject(_SubCategoryRepo.FetchSubCategories());
+                result.ReturnCode = "200";
+                result.ReturnMessage = "Success";
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
 
         #region Brand
         public APIResponseModel BrandCrud(BrandInputModel inputModel)
@@ -253,13 +307,13 @@ namespace BusinessLogicLayer.Master
         #endregion
 
         #region Product
-        public APIResponseModel ProductCrud(VarientOptInputModel inputModel)
+        public APIResponseModel ProductCrud(ProductInputModel inputModel)
         {
             try
             {
                 APIResponseModel result = new APIResponseModel();
-                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
-                result = _VarientOptRepo.VarientOptInsertUpdate(inputModel);
+                ProductRepo _ProductRepo = new ProductRepo();
+                result = _ProductRepo.ProductInsertUpdate(inputModel);
                 return result;
             }
             catch (Exception ex)
@@ -267,13 +321,13 @@ namespace BusinessLogicLayer.Master
                 throw ex;
             }
         }
-        public APIResponseModel ProductDataTable(VarientOptDatatableInputModel model)
+        public APIResponseModel GetProductDataTable(ProductDatatableInputModel model)
         {
             try
             {
                 APIResponseModel result = new APIResponseModel();
-                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
-                result.Data = JsonConvert.SerializeObject(_VarientOptRepo.FetchVarientOpt());
+                ProductRepo _ProductRepo = new ProductRepo();
+                result.Data = JsonConvert.SerializeObject(_ProductRepo.FetchProduct());
                 result.ReturnCode = "200";
                 result.ReturnMessage = "Success";
                 return result;
@@ -284,15 +338,15 @@ namespace BusinessLogicLayer.Master
                 throw ex;
             }
         }
-        public APIResponseModel ProductActiveDeactive(VarientOptActiveDeactiveInputModel inputModel)
+        public APIResponseModel ProductActiveDeactive(ProductActiveDeactiveInputModel inputModel)
         {
             try
             {
                 //APIResponseModel result = new APIResponseModel();
 
                 APIResponseModel result = new APIResponseModel();
-                VarientOptRepo _VarientOptRepo = new VarientOptRepo();
-                result = _VarientOptRepo.VarientOptActiveDeactive(inputModel);
+                ProductRepo _ProductRepo = new ProductRepo();
+                result = _ProductRepo.ProductActiveDeactive(inputModel);
                 return result;
 
             }

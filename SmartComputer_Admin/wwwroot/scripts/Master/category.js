@@ -3,7 +3,6 @@
     $('.closecategory').click(function () {
         $('#addCategory').removeClass('active');
     });
-
     ServerSideCategoryDataTable();
     //DatableSearchColumnWise("tblCategory");
 
@@ -22,15 +21,20 @@ function OpenCrudpopUpDanger() {
 }
 
 function AddCategory() {
+    alert('test1');
     RemoveAllFieldErrorBorderColor();
     var isValid = 1;
     var formData = new FormData();
     var catName = $("#txt_category").val().trim();
+    alert(catName);
     /*var catImage = $("#cat_Img").prop("files")[0];*/
     var catImage = $("#cat_Img").prop("files")[0];
+    alert(catImage);
     //alert(catImage.getAsDataURL());
     var catId = $('#txtHiddenCatId').val().trim();
+    alert(catId);
     var catPrevImage = $("#txthiddenPrvImage").val().trim();
+    alert(catPrevImage);
     if (catId.length > 0) {
         formData.append("Id", catId);
     }
@@ -137,6 +141,7 @@ function ServerSideCategoryDataTable() {
     //        "loadingRecords": "Please wait - loading..."
     //    },
     //});
+   
     $('.tblCategory').DataTable({
         "processing": true,
         "destroy": true,

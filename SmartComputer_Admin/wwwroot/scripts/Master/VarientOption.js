@@ -97,46 +97,6 @@ function ResetField() {
 }
 
 function ServerSideVarOptDataTable() {
-
-    //$('.tblCategory').dataTable({
-    //    dom: 'rtip',
-    //    scrollX: true,
-    //    scrollCollapse: true,
-    //    "paging": true,
-    //    "ordering": true,
-    //    "filter": true,
-    //    "destroy": true,
-    //    "orderMulti": false,
-    //    "processing": true,
-    //    "serverSide": true,
-    //    "orderCellsTop": true,
-
-    //    "ajax":
-    //    {
-    //        "url": "/Category/CategoryDataTable",
-
-    //        "type": "POST",
-    //        "dataType": "JSON",
-
-    //        complete: function (data) {
-    //            //alert(JSON.parse( data));
-    //        }
-    //    },
-    //    columns: [
-    //        {
-    //            'data': 'id',
-    //            "sClass": "dsplynone hiddenCatId",
-    //        },
-    //        {
-    //            'data': 'categoryName',
-    //            "sClass": "catName"
-    //        }
-    //    ],
-    //    "oLanguage": {
-    //        "sEmptyTable": "No record(s) to display",
-    //        "loadingRecords": "Please wait - loading..."
-    //    },
-    //});
     $('.tblCategory').DataTable({
         "processing": true,
         "destroy": true,
@@ -144,6 +104,9 @@ function ServerSideVarOptDataTable() {
         "ajax": {
             "url": "/VarientOption/VarientOptDataTable",
             dataSrc: ''
+            //success: function (result) {
+            //    alert(JSON.stringify(result));
+            //}
         },
         "columns": [{
             "data": "id",
@@ -151,7 +114,7 @@ function ServerSideVarOptDataTable() {
 
         },
         {
-            "data": "VarientOptionName",
+            "data": "varientName",
             "sClass": "varoptName"
         },
         //{
